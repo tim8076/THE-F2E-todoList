@@ -1,0 +1,287 @@
+@import "_reset.scss";
+
+//color
+$praimry-color:#4A90E2;
+$praimry-dark-color:#00408B;
+$danger-color:#D0021B;
+$warm-color: #F5A623 ;
+$milk-color:#FFF2DC;
+$dark:#000;
+$white:#fff;
+$gray-100:#f2f2f2;
+$gray-300:#e1e1e1;
+$gray-500:#c8c8c8;
+$gray-700:#757575;
+
+body{
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    background-color: $gray-300;
+}
+.container{
+    max-width: 620px;
+    margin: 0 auto;
+}
+input,textarea{
+    border: none;
+    outline: none;
+    &::placeholder{
+        color:$gray-500;
+    }  
+}
+i,label{
+  cursor: pointer;
+}
+//extend
+%collapse-area{
+    max-height: 0;
+    overflow: hidden;
+}
+
+
+//header
+.header{
+    background-color: $praimry-color;
+    .nav-bar{
+        display: flex;
+    }
+    a{
+        width: 33.3333%;
+        text-align: center;
+        padding: 24px 0;
+        color: $praimry-dark-color;
+        font-size: 1.5rem;
+        &.active{
+            color: $white;
+            border-bottom: 5px solid $praimry-dark-color;
+        }
+    }
+}
+
+//input-area
+.input-area{
+    margin: 24px 0;
+    padding-left: 30px;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    color:$gray-500;
+    border: 2px solid $gray-500;
+    border-radius: 5px ;
+    input{
+       padding: 24px ;
+       font-size: 1.5rem;
+    }
+}
+.task-title{
+    padding: 24px 32px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid $gray-500;
+    position: relative;
+    cursor: move;
+    &::before{
+        font: normal normal normal 24px/1 FontAwesome;
+        content: "\f142";
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        transform: translateY(-50%);
+        color: #d8d8d8;
+        display: none;
+    }
+    &:hover{
+        &::before{
+              display: block;
+        }  
+    }
+    .task-title-row{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &:first-child{
+            margin-bottom: 1rem;
+        }
+    } 
+    .task-title-row .icon-row{
+        display: flex;
+        align-items: center;
+        margin-left: 2rem;
+        font-size: 1rem;
+        .fa,span{
+            margin-right: 1rem;
+            display: none;
+            &.active{
+              display: block;
+            }
+        }
+        .fa:first-child{
+            margin-right: 0.3rem;
+        }
+    }
+    .input{
+        display: flex;
+        align-items: center;
+    }
+    .checkbox-label{
+      width: 24px;
+      height: 24px;
+      background-color: $white;
+      margin-right: 1rem;
+      color: $praimry-color;
+      i{
+          display: none;
+      }
+    }
+    input.checkbox{
+        display: none;
+    }
+    input.checkbox:checked ~ .checkbox-label i{
+        display: block;
+    }
+    input.checkbox:checked ~ .text{
+        text-decoration: line-through;
+        color: #9b9b9b;
+    }
+    input.text{
+        font-size: 1.5rem;
+        background-color: inherit;
+        &::placeholder{
+            color: $dark;
+        }
+    }
+    .icon-star{
+      display: inline-block;
+      i.fa-star{
+          color: $warm-color;
+      }
+    }
+    .fa-pencil{
+        margin-left: 32px;
+    }
+}
+.task-content{
+    &.active{
+        padding: 24px 72px;
+    }
+    .task-content-area{
+        display: flex;
+        margin-bottom: 22px;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+    h3{
+        font-size: 20px;
+        color: $dark;
+        margin-bottom: 8px;
+    }
+     input,textarea{
+        padding: 8px 16px;
+        &:focus{
+            border: 1px solid $praimry-color; 
+            box-shadow: 0px 0px 4px #4a90e2;
+        }
+    }
+    .icon{
+        margin-right: 12px;
+    }   
+    .file-input label{
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        background-color: $gray-500;
+        color: $white;
+        line-height: 32px;
+        text-align: center;
+        transition: background-color .3s ease-in-out;
+        &:hover{
+          background-color: $praimry-color;
+        }        
+    }
+    .file-input input{
+        display: none;
+    }
+    .file-input a{
+        color: $praimry-color;
+        &:hover{
+            color: $praimry-dark-color;
+        }
+    }
+    .comment-input{
+        width: 100%;
+        textarea{
+            width: 100%;
+            height: 120px;
+        }
+    }
+}
+.task-button{
+    display: flex;
+    button{
+        width: 50%;
+        padding: 16px 0;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: background-color .3s ease-in-out;
+    }
+    .fa{
+        margin-right: 10px;
+    }
+    .task-button-cancel{
+        background-color: $white;
+        color: $danger-color;
+        &:hover{
+            background-color:#fdfdfd;
+        }
+    }
+    .task-button-save{
+        background-color: $praimry-color;
+        color: $white;
+         &:hover{
+            background-color:#3982d7;
+        }
+    }
+}
+.add-task-area{  
+    background-color: $gray-100;
+    border-radius: 5px ;  
+    @extend %collapse-area;
+    transition: max-height .3s ease-in-out;
+    margin-bottom: 24px;
+    &.active{
+        max-height: 800px;
+    }
+    .fa-pencil{
+        color: $praimry-color;
+    } 
+}
+.todo-list-item{
+    background-color: $gray-100;
+    border-radius: 5px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    &:hover{
+        box-shadow: 0px 0px 15px 5px rgba(0,0,0,.3);
+    }
+    .task-title.active{
+        background-color: $milk-color;
+    }
+    .task-button,
+    .task-content{
+        @extend %collapse-area;
+        &.active{
+            max-height: 800px;
+        }
+    }
+    .fa-pencil.active{
+       color: $praimry-color; 
+    }
+}
+.left-todo{
+    padding-left: 2rem;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: $gray-500;
+}
