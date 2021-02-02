@@ -7,7 +7,6 @@
             e.preventDefault();
             this.classList.add('active');
             $(this).siblings().removeClass('active');
-
             switch(this.id){
                 case 'tasks':
                     newToDo('todo','complete');
@@ -84,6 +83,7 @@
                                 <input type="text" class="text" readonly="true" ondblclick="this.readOnly='';" placeholder="Type Something Here..." value="${todo.title}" >
                             </div>
                             <div class="icons">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                                 <div class="icon-star">
                                     <i class="fa ${important} js-alert" aria-hidden="true"></i>
                                 </div>
@@ -222,7 +222,15 @@
                 $(this).siblings('a').text(file);
             })    
         }
-
+        //刪除單一項目
+        if (target.classList.contains('fa-trash')){
+            if(confirm('確定刪除項目?')){
+                let num = $(target).parents('.todo-list-item').data('num');
+                todoData.splice(num, 1);
+                localStorage.setItem('todoList', JSON.stringify(todoData));
+                newToDo('todo', 'complete');
+            }        
+        }
     })
     
     //全域 container 偵聽
@@ -244,43 +252,7 @@
         }
     })
 
-    //拖曳排序
-    function dragItem(){
-        let todoItems = [...document.querySelectorAll('.todo-list-item')]; //轉陣列
-
-        todoItems.forEach(item => {
-            item.setAttribute('draggable', true);
-            item.addEventListener('dragstart', dragStart);
-            item.addEventListener('drop',dropped);
-            item.addEventListener('dragenter', noDefault);
-            item.addEventListener('dragover', noDefault);
-        })
-        function dragStart(e){
-            const num = todoItems.indexOf(this);
-            console.log(num)
-            e.dataTransfer.setData('text/plain',num);
-        }      
-        function dropped(e){
-           noDefault(e);
-            console.log(todoItems )
-           let oldIndex = e.dataTransfer.getData('text/plain'); 
-           let newIndex = todoItems.indexOf(this);
-           let dropped = todoItems[oldIndex];
-
-           dropped.remove();
-            if (newIndex < oldIndex){
-               $(this).before(dropped);   
-           }else{
-               $(this).after(dropped);
-           }              
-        }
-
-        function noDefault(e){
-            e.preventDefault();
-            e.stopPropagation();
-        };
-    }
-    dragItem();
+ 
 })();
 
 

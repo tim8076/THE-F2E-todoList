@@ -78,7 +78,6 @@ i,label{
     font-size: 1.5rem;
     border-bottom: 2px solid $gray-500;
     position: relative;
-    cursor: move;
     &::before{
         font: normal normal normal 24px/1 FontAwesome;
         content: "\f142";
@@ -100,6 +99,18 @@ i,label{
         align-items: center;
         &:first-child{
             margin-bottom: 1rem;
+        }
+        @media(max-width:569px){
+            &{
+               flex-direction: column; 
+               align-items: flex-start;
+            }
+            .input{
+                margin-bottom: 1rem;
+            }
+            .icons{
+                margin-left: 2rem;
+            }
         }
     } 
     .task-title-row .icon-row{
@@ -151,6 +162,7 @@ i,label{
     }
     .icon-star{
       display: inline-block;
+      margin-left: 32px;
       i.fa-star{
           color: $warm-color;
       }
