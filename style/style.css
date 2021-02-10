@@ -149,6 +149,10 @@ i, label {
   font-size: 1.5rem;
 }
 
+.input-area.hide {
+  display: none;
+}
+
 .task-title {
   padding: 24px 32px;
   font-size: 1.5rem;

@@ -34,10 +34,13 @@
     //新增代辦事項區域 事件綁定
     addTaskInput.addEventListener('click',function(){
         addTaskContent.classList.toggle('active');
+        console.log(this)
+        this.classList.add('hide');
     })
     addTaskSaveBtn.addEventListener('click',addToDo);
     addTaskCloseBtn.addEventListener('click', function () {
         addTaskContent.classList.toggle('active');
+        addTaskInput.classList.remove('hide');
     })
  
     let todoData = JSON.parse(localStorage.getItem('todoList')) || [];  
@@ -182,6 +185,7 @@
         
         sort();
         newToDo('todo'); //插入新list
+        addTaskInput.classList.remove('hide');
     }
     
     //todoSection 偵聽

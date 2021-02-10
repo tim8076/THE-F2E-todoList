@@ -72,6 +72,9 @@ i,label{
        padding: 24px ;
        font-size: 1.5rem;
     }
+    &.hide{
+        display: none;
+    }
 }
 .task-title{
     padding: 24px 32px;
